@@ -218,7 +218,7 @@ def reverse_num(num):
 5. Greates Common Divisor (build-in function exist but may be usefull + recursion)
 6. Is number Armstrong number? (pierwsze slysze tbh)
 7. Find all factors of a number
-8. Is number a perfect numeber
+8. Is number a perfect number
 9. fibonacci
 
 
@@ -358,13 +358,125 @@ def square_lst(lst):
     return [x**2 for x in lst]
 ```
 
+# Set
+## Basics
+- Sets are [mutable](Glossary.md#mutable)
+- Sets are [iterable](Glossary.md#iterable)
+- Sets can NOT be indexed (unordered)
+- Sets can NOT be sliced (unordered)
+- A set is an unordered collection of unique items
+- Items can be only of a immutable type: numeric, string, tuples, frozensets.
 
+## Modifying Set
+```python
+s = {1, 2, 3}
 
+s.add(4)  # {1, 2, 3, 4}
+s.add(1) # no change since 1 already exists in set
+s.update([4,5]) # {1, 2, 3, 4, 5}
+s.remove(2) # {1, 3, 4, 5} 
+s.remove(2) # error, 2 not found
+s.discard(3) # {1, 4, 5}
+s.discard(3) # does not raise error when 3 not found
+s.pop() # {1, 5} removes a random element and returns it, error if set empty
+```
+
+Example `s = {1, 2, 3}`  
+
+| method         | Description                         | Example                |
+|------------------|-------------------------------------|------------------------|
+| **s.add((2, "7"))** | adds a single element to the set, no effect if the element is already present, can add hashable object e.g. tuple  | `"{1, 3, 4, (2, '7')}"`        |
+| **s.update([5, 6])** | adds multiple elements from another iterable (list, tuple, set, string, etc.), loops through the iterable and add all its elements, no effect if the element is already present  | `"{1, 3, 4, 5, 6, (2, '7')}"`        |
+
+## Set Operations
+```python
+a = {1, 2, 3}
+b = {3, 4, 5}
+
+a | b # {1, 2, 3, 4, 5} union
+a & b # {3} intersection
+a - b # {1, 2} difference
+a ^ b # {1, 2, 4, 5} symmetric difference
+```
+![Set operations](imgs/Python-Set-Operations.png)
+
+## Useful Functions
+```python
+s = {1, 2, 3}
+
+len(s) # 3
+min(s) # 1
+max(s) # 3
+sum(s) # 6
+sorted(s) # [1, 2, 3] returns sorted list
+```
+## Common problems / Tricks
+1. Remove duplicates from a list
+```python
+def remove_duplicates(lst):
+    
+    return list(set(lst))
+```
+2. Find list of common elements between two lists
+```python
+def common_elements(lst_1, lst_2):
+    
+    return list(set(lst_1) & set(lst_2))
+```
+3. Find elements present in one list but not another
+```python
+```
+4. Count unique words in a sentence
+```python
+```
+5. Find duplicate elements in a list esing sets
+```python
+```
+
+# Tuple
+## Basics
+- Tuples are [immutable](Glossary.md#immutable)
+- Tuples are [iterable](Glossary.md#iterable)
+- Tuples can be indexed
+- Tuples can be sliced
+- A tuple is an ordered, immutable collection of items
+- Items can be of any type: int, float, string, list, etc.
+
+## Tuple Methods (all non-magic methods)
+```python
+t = (1, [2,3], "nie")
+
+t.count("nie") # 1
+t.index(1) # 0 
+```
+
+## Common problems / Tricks
+1. Unpack tuple of 3 elements into variables
+```python
+tooople = ("nie", [3,4,5], 6)
+
+a, b, c = tooople
+```
+2. Nested tuple access ex. ```([1, 2], [3, 4])``` access 4
+```python
+toople = ([1, 2], [3, 4])
+toople[1][1]
+```
+3. Check if element exists in tuple
+```python
+def element_in_tuple(krotka, value):
+
+    if value in krotka:
+        return True
+    return False
+```
 
 # To-do
 https://www.w3schools.com/python/exercise.asp?x=xrcise_datatypes1  
-dict, set i tuple  
-
+dict, frozenset
+add *method* descriptions for sets and tuples
+practice questions
+args kwargs function
 
 # Links
 https://docs.python.org/3/tutorial/introduction.html  
