@@ -64,9 +64,66 @@ Example `text = "hello python"`
 2. Count vowels in string
 3. Remove all spaces
 4. [Count frequency for each character]
-5. [Find first non-repeated character]
-6. [Check if two string are anagrams]
-7. [Find longest word in sentence]
+5. Find first non-repeated character
+```python
+# naive solution
+def nonrepeated_char(string):
+
+    dicc = {}
+
+    for char in string:
+
+        if char not in dicc:
+            dicc[char] = 1
+
+        elif char in dicc:
+            dicc[char] += 1
+
+    for key in dicc:
+        if dicc[key] == 1:
+            return key
+
+    return -1
+
+# optimized solution
+def nonrepeated_char(string):
+
+    for char in string:
+
+        if string.count(char) == 1:
+
+            return char
+
+    return -1
+```
+6. Check if two string are anagrams
+```python
+def anagram(word_1, word_2):
+
+    return sorted(word_1) == sorted(word_2)
+```
+7. Find longest word in sentence
+```python
+# naive solution
+def longest_word(string):
+
+    word_list = string.split()
+    
+    l_word = ""
+    for word in word_list:
+
+        if len(word) > len(l_word):
+            l_word = word
+
+    return l_word
+
+# shorter solution
+def longest_word(string):
+
+    word_list = string.split()
+
+    return max(word_list, key=len)
+```
 
 # Numeric
 ## Basics (int and float) 
@@ -128,9 +185,35 @@ if 0: # 0 -> False in if statement
 
 
 ## Common problems / Tricks
-1. [Check if number is odd or even]
-2. [Sum of digits in number]
-3. [Reverse a int]
+1. Check if number is odd or even
+```python
+def even_odd(num):
+
+    if num % 2 == 0:
+        return "even"
+
+    return "odd"
+```
+2. Sum of digits in number
+```python
+def sum_of_digits(num):
+
+    sum = 0
+    string_num = str(num) 
+    
+    for n in string_num: 
+        sum+=int(n) 
+
+    return sum
+```
+
+3. Reverse a int
+```python
+def reverse_num(num):
+
+    return int(str(num)[::-1])
+```
+
 4. Factorial of a number
 5. Greates Common Divisor (build-in function exist but may be usefull + recursion)
 6. Is number Armstrong number? (pierwsze slysze tbh)
@@ -198,15 +281,82 @@ newlist_odd = [x for x in range(10) if x % 2 == 1] # [1, 3, 5, 7, 9]
 
 ## Common problems / Tricks
 1. Sum all elements
-2. Reverse a list
-3. Remove duplicates
-4. Create list B of even numbers from list A
-5. Check if empty
-6. Count occurences of element
-7. Find index of element
-8. Flatten a list (single lvl)
-9. Comprehension list: Square of numbers
+```python
+def list_sum(lst):
 
+    return sum(lst)
+```
+2. Reverse a list
+```python
+def list_reverse(lst):
+
+    return lst[::-1]
+```
+3. Remove duplicates
+```python
+def remove_duplicates(lst):
+
+    return list(set(lst))
+```
+4. Create list B of even numbers from list A
+```python
+def even_list(lst):
+
+    return [x for x in lst if x % 2 == 0]
+```
+5. Check if empty
+```python
+def is_empty(lst):
+
+    if lst:
+        return False
+    
+    return True
+```
+6. Count occurences of element
+```python
+def element_occurences(lst, value):
+
+    return lst.count(value)
+```
+7. Find index of element
+```python
+def element_index(lst, value):
+
+    # enumerate returns tuples of index and element
+    for index, element in enumerate(lst): 
+        if element == value:
+            return index
+
+    
+# shorter solution
+def element_index(lst, value):
+
+    return lst.index(value)
+```
+8. Flatten a list (list of lists only) (single lvl)
+```python
+def flatten_list(lst):
+
+    flattened_lst = []
+
+    for element in lst:
+        flattened_lst.extend(element)
+
+    return flattened_lst
+   
+# list comprehension version 
+def flatten_list(lst):
+
+    return [element for sublist in lst for element in sublist]
+```
+
+9. Comprehension list: Square of numbers
+```python
+def square_lst(lst):
+
+    return [x**2 for x in lst]
+```
 
 
 
@@ -214,7 +364,6 @@ newlist_odd = [x for x in range(10) if x % 2 == 1] # [1, 3, 5, 7, 9]
 # To-do
 https://www.w3schools.com/python/exercise.asp?x=xrcise_datatypes1  
 dict, set i tuple  
-Julia repo + swoj kod pod te common problems + komentarze niech sobie doda
 
 
 # Links
