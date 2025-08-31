@@ -16,6 +16,7 @@ To-do
 - Strings are [iterable](Glossary.md#iterable)
 - Strings can be indexed (character can be accessed with bracket notation)
 - Strings can be sliced
+- Average lookup O(n)
 
 ## Formating and f-strings
 **.format()**  
@@ -62,7 +63,22 @@ Example `text = "hello python"`
 ## Common problems / Tricks
 1. Reverse a string (e.g palindrome)
 2. Count vowels in string
+```python
+def count_vowels(string):
+
+    count = 0
+    vowels = {'a', 'i', 'o', 'e', 'u'}
+
+    for char in string:
+        if char in vowels:
+                count+=1    
+                
+    return count
+```
 3. Remove all spaces
+```python
+string.replace(" ", "")
+```
 4. [Count frequency for each character]
 5. Find first non-repeated character
 ```python
@@ -215,11 +231,22 @@ def reverse_num(num):
 ```
 
 4. Factorial of a number
+```python
+def factorial(number):
+
+    result = 1
+    
+    for num in range(1, number + 1, 1):
+        result *= num
+
+    return result
+```
 5. Greates Common Divisor (build-in function exist but may be usefull + recursion)
 6. Is number Armstrong number? (pierwsze slysze tbh)
 7. Find all factors of a number
 8. Is number a perfect number
 9. fibonacci
+10. Factorial of a number but with rEcCURsiON
 
 
 # List
@@ -230,6 +257,7 @@ def reverse_num(num):
 - Lists can be sliced
 - A list is an ordered (position matters) collection of items
 - Items can be of any type: int, float, string, even other lists.
+- Lookup is O(n)
 
 ## Accessing Elements
 ```python
@@ -366,6 +394,7 @@ def square_lst(lst):
 - Sets can NOT be sliced (unordered)
 - A set is an unordered collection of unique items
 - Items can be only of a immutable type: numeric, string, tuples, frozensets.
+- Lookup is O(1) average
 
 ## Modifying Set
 ```python
@@ -425,6 +454,8 @@ def common_elements(lst_1, lst_2):
 ```
 3. Find elements present in one list but not another
 ```python
+def list_diff(lst_1, lst_2):
+    return list(set(lst_1) - set(lst_2))
 ```
 4. Count unique words in a sentence
 ```python
@@ -435,10 +466,10 @@ def common_elements(lst_1, lst_2):
 
 # Tuple
 ## Basics
-- Tuples are [immutable](Glossary.md#immutable)
-- Tuples are [iterable](Glossary.md#iterable)
-- Tuples can be indexed
-- Tuples can be sliced
+- Tuples are [immutable](Glossary.md#immutable).
+- Tuples are [iterable](Glossary.md#iterable).
+- Tuples can be indexed.
+- Tuples can be sliced.
 - A tuple is an ordered, immutable collection of items
 - Items can be of any type: int, float, string, list, etc.
 
