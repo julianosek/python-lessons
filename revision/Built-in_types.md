@@ -501,6 +501,169 @@ def element_in_tuple(krotka, value):
         return True
     return False
 ```
+# Dictionary
+## Basics
+- Dictionaries are [mutable](Glossary.md#mutable).
+- Dictionaries are [iterable](Glossary.md#iterable).
+- Dictionaries cannot be indexed. (accessed by key not by index)
+- Dictionaries cannot be sliced.
+- Dictionaries store the data as key/value pairs.
+- Keys must be immutable (string, int, tuple, etc) 
+- Values can be any data type.
+- Lookup is O(1).
+
+## Accessing and Modifying
+```python
+person = {
+    "name": "Alice",
+    "age": 25,
+    "is_student": True
+}
+
+# print name value
+print(person["name"])
+print(person.get("name"))
+
+# print key value for non existent key
+print(person["city"]) # gives error
+print(person.get("city")) # returns none
+print(person.get("city"), -1) # returns -1
+
+# change value of an existing key
+person["age"] = 26 
+
+# add new key and value
+person["city"] = "Paris"
+```
+## Removing Items
+
+```python
+person = {
+    "name": "Alice",
+    "age": 25,
+    "is_student": True
+}
+
+# remove all items in dictionary
+person.clear()
+
+# remove specified key/value pair
+person.pop("name") 
+# gives error if no arguement or if given key doesnt exist
+# returns popped value
+
+# remove last key/value pair added
+person.popitem() 
+# gives error if dictionary empty
+# returns popped key/value pair as tuple
+
+# remove specified key/value pair
+del person["is_student"] 
+# gives error if given key does not exist
+# does not return popped value unlike pop()
+
+```
+
+## Methods
+
+```python
+person = {
+    "name": "Alice",
+    "age": 25,
+    "is_student": True
+}
+
+# print keys comparison
+for key in person.keys(): # using .keys()
+    print(key)
+
+for key in person:
+    print(key)
+
+# print values comparison
+
+for value in person.values(): # using .values()
+    print(value)
+
+for key in person:
+    print(person[key])
+
+
+# print both key and values
+
+for key, value in person.items(): # using .items()
+    print(key, value)
+
+```
+
+## Common problems / Tricks
+1. Count Frequency of Characters in a String
+```python
+def count_characters(string):
+
+    char_dicc = {}
+
+    for char in string:
+
+        if char not in char_dicc:
+            char_dicc[char] = 1
+        else:
+            char_dicc[char] += 1
+
+    return char_dicc
+
+
+# shorter solution using .get()
+def count_characters(string):
+
+    char_dicc = {}
+
+    for char in string:
+        char_dicc[char] = char_dicc.get(char, 0) + 1
+
+    return char_dicc
+
+```
+2. Merge Two Dictionaries (huh merged = {**a, **b})
+```python
+a = {"x": 1, "y": 2}
+b = {"y": 3, "z": 4}
+
+merged = {**a, **b} # put two unpacked dictionaries into new dictioanry
+print(merged)  # {'x': 1, 'y': 3, 'z': 4}
+```
+3. Check if a Key Exists
+```python
+def key_exists(dictionary, key):
+    return key in dictionary
+```
+4. Find Key with Maximum Value
+```python
+# naive solution
+def key_maximum(dictionary):
+
+    max_key = list(dictionary.keys())[0]
+
+    for key, value in dictionary.items():
+
+        if value > dictionary[max_key]:
+            max_key = key
+
+    return max_key, dictionary[max_key]
+
+# complex solution, simpler because doesnt create list
+a = {"x": 1, "y": 2, "z": 7, "nie":69}
+
+max_key = max(a, key=a.get)
+print(max_key, a[max_key])
+```
+5. Invert a Dictionary (Swap Keys and Values)
+6. Sort Dictionary by Keys
+7. Sort Dictionary by Values
+8. Create a Dictionary from Two Lists (zip)
+9. Nested Dictionary Lookup
+10. Group Words by Length Using Dictionary
+
 
 # To-do
 https://www.w3schools.com/python/exercise.asp?x=xrcise_datatypes1  
